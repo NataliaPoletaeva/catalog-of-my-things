@@ -41,9 +41,9 @@ Layout/ExtraSpacing:
 Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
-Link/ScriptPermission: true
 Lint/RaiseException:
   Enabled: false
+Lint/ScriptPermission: true
 Lint/StructNewOverride:
   Enabled: false
 Style/HashEachMethods:

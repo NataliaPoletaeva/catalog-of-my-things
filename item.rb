@@ -27,4 +27,14 @@ class Item
     @label = label
     label.items.push(self) unless label.items.include?(self)
   end
+
+  def can_be_archived?()
+    return true if (@publish_date.year - Time.now.year) > 10
+
+    false
+  end
+
+  def move_to_archive()
+    @archived = true if can_be_archived?
+  end
 end

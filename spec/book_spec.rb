@@ -11,13 +11,13 @@ describe Book do
   end
 
   context 'when calling method move_to_archive' do
-    it 'with book older than 10 years and \'bad\' cover_state, should set archived property of the book to true' do
+    it 'with new book and \'bad\' cover_state, should set archived property of book to true' do
       book = Book.new('Printice Hall', Time.local('2000-05-05'), 'bad')
       book.move_to_archive
       expect(book.archived).to be_truthy
     end
 
-    it 'with book newer than 10 years and not \'bad\' cover_state, should leave archived property as false by default' do
+    it 'with new book and not \'bad\' cover_state, should leave archived as false by default' do
       book = Book.new('Printice Hall', Time.local('2015-05-05'), 'new')
       book.move_to_archive
       expect(book.archived).to be_falsey

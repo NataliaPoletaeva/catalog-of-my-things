@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 class MainEntryPoint
   def user_options
     puts

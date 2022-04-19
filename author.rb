@@ -8,4 +8,9 @@ class Author
     @first_name = first_name.strip
     @last_name = last_name.strip
   end
+
+  def add_item(item)
+    @items.push(item)
+    item.author = self
+  end
 end

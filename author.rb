@@ -1,11 +1,11 @@
 class Author
-    attr_reader :first_name, :last_name
-    attr_accessor :items
-  
-    def initialize(first_name, last_name)
-      @id = rand(1..100_000)
-      @items = []
-      @first_name = first_name.strip
-      @last_name = last_name.strip
-    end
+  attr_reader :first_name, :last_name
+  attr_accessor :items
+
+  def initialize(first_name, last_name)
+    @id = rand(1..100_000)
+    @items = []
+    @first_name = first_name.strip
+    @last_name = last_name.strip
   end
+end

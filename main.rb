@@ -22,6 +22,7 @@ class MainEntryPoint
       user_input = gets.chomp
       case user_input
       when '1' then app.list_books
+      when '6' then app.list_labels
       when '9' then app.create_book
       when 'E' then puts 'Saving data in JSON files....'
       end

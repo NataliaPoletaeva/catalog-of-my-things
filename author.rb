@@ -1,9 +1,11 @@
+require './item'
+
 class Author
-  attr_reader :first_name, :last_name
+  attr_reader :first_name, :last_name, :id
   attr_accessor :items
 
   def initialize(first_name, last_name)
-    @id = rand(1..100_000)
+    @id = Random.rand(1..10_000)
     @items = []
     @first_name = first_name.strip
     @last_name = last_name.strip

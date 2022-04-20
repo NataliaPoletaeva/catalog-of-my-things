@@ -1,17 +1,14 @@
-require './item'
-
 class Genre
-  attr_accessor :name
-  attr_reader :items
+  attr_reader :name, :items
 
-  def initialize(_name)
-    @id = Random.rand(1..10_00)
+  def initialize(name, id = Random.rand(1..1000))
+    @id = id
     @name = name
     @items = []
   end
 
   def add_item(item)
     @items.push(item)
-    item.genre = self
+    item.add_genre = self
   end
 end

@@ -1,15 +1,17 @@
 require './item'
 
-class Genre < Item
-  attr_accessor :on_spotify
+class Genre
+  attr_accessor :name
+  attr_reader :items
 
-  def initialize(_name, _id, _items)
-    super(publish_date)
+  def initialize(_name)
+    @id = Random.rand(1..10_00)
+    @name = name
+    @items = []
   end
 
-  private
-
-  def can_be_archived?
-    false
+  def add_item(item)
+    @items.push(item)
+    item.label = self
   end
 end

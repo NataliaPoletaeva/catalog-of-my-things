@@ -6,6 +6,10 @@ class Item
     @id = Random.rand(1..10_000)
     @publish_date = publish_date
     @archived = false
+    @label = nil
+    @author = nil
+    @genre = nil
+    @source = nil
   end
 
   def genre=(genre)

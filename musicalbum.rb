@@ -3,7 +3,7 @@ require './item'
 class Musicalbum < Item
   attr_accessor :on_spotify
 
-  def initialize(on_spotify)
+  def initialize(on_spotify, publish_date)
     super(publish_date)
     @on_spotify = on_spotify
   end
@@ -11,7 +11,7 @@ class Musicalbum < Item
   private
 
   def can_be_archived?
-    return true if supper || cover_state == 'bad'
+    return true if super && on_spotify
 
     false
   end

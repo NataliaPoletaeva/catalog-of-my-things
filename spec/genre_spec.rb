@@ -1,26 +1,21 @@
-# require './genre'
+require './genre'
 
-# describe Genre do
-#   before :each do
-#     @genre = Genre.new('Metal')
-#   end
+describe Genre do
+  context 'when instantiated' do
+    it 'with publisher, publish_date and cover_state should create a genre' do
+      genre = Genre.new('Afro')
+      expect(genre.class).to eq Genre
+    end
+  end
 
-#   context 'When testing the Genre class' do
-#     it 'should have an object with the instance of Genre' do
-#       genre_class = @genre.class
+  it 'Name should create a genre' do
+    genre = Genre.new('Afro Beats')
+    expect(genre.class).to eq Genre
+  end
 
-#       expect(genre_class).to be Genre
-#     end
-
-#     it 'should add an object to items array' do
-#       music_album = double('MusicAlbum', name: 'The Gods of Africa (2013 - Remaster)')
-
-#       allow(music_album).to receive(:add_genre=) { @genre }
-
-#       @genre.add_item(music_album)
-#       genre_items = @genre.items
-
-#       expect(genre_items.length).to eq 1
-#     end
-#   end
-# end
+  it 'with publisher, publish_date and cover_state should create a genre' do
+    genre = Genre.new('No Genre')
+    expect(genre.class).to eq Genre
+    expect(genre.name).to eq nil
+  end
+end

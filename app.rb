@@ -10,8 +10,8 @@ class App
   include PreserveData
 
   def initialize
-    @authors = []
-    @games = []
+    @authors = retrieve_data('authors')
+    @games = retrieve_data('games')
     @books = retrieve_data('books')
     @labels = retrieve_data('labels')
   end
@@ -77,7 +77,7 @@ class App
     author
   end
 
-  def add_book
+  def create_book
     user_input = book_input
     label = add_label_to_item
     author = add_author_to_item
@@ -92,7 +92,7 @@ class App
     book
   end
 
-  def add_game
+  def create_game
     user_input = game_input
     label = add_label_to_item
     author = add_author_to_item
@@ -141,6 +141,6 @@ class App
   end
 
   def preserve_data_to_json
-    persist_data(@books, @labels)
+    persist_data(@books, @games, @labels, @authors)
   end
 end

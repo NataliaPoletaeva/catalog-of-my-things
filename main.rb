@@ -15,7 +15,7 @@ class MainEntryPoint
     app = App.new
 
     user_input = nil
-    puts 'Hello! What would you like to do today?'
+    puts 'Hello Team'
 
     while user_input != 'E'
       user_options

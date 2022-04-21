@@ -12,3 +12,10 @@ CREATE TABLE books (
   CONSTRAINT fk_Labels  
   FOREIGN KEY(label_id) REFERENCES labels(id)
 );
+
+-- create labels table
+CREATE TABLE labels (
+  id integer NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  title varchar(100),
+  color varchar(100)
+);

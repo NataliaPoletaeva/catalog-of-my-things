@@ -9,6 +9,8 @@ class Game < Item
     @multiplayer = multiplayer
   end
 
+  private
+
   def can_be_archived?
     return true if Time.new.year - @last_played_date.year.to_i > 2
 

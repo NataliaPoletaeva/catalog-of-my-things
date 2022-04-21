@@ -1,12 +1,15 @@
 require './console'
+require './preserve_data'
 require './label'
 require './book'
 
 class App
   include Console
+  include PreserveData
+
   def initialize
-    @books = []
-    @labels = []
+    @books = retrieve_data('books')
+    @labels = retrieve_data('labels')
   end
 
   def list_books
@@ -64,5 +67,9 @@ class App
     label&.add_item(book)
     @books << book
     book
+  end
+
+  def preserve_data_to_json
+    persist_data(@books, @labels)
   end
 end

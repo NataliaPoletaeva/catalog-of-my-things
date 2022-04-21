@@ -1,5 +1,6 @@
 require './item'
 require './label'
+require './author'
 
 class Book < Item
   attr_accessor :publisher, :cover_state
@@ -31,6 +32,7 @@ class Book < Item
     end
     book = new(*object_variables)
     book.label = object['book']['label']
+    book.author = object['book']['author']
     book
   end
 

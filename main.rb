@@ -24,7 +24,7 @@ class MainEntryPoint
       when '1' then app.list_books
       when '6' then app.list_labels
       when '9' then app.create_book
-      when 'E' then 
+      when 'E'
         puts 'Saving data in JSON files....'
         app.preserve_data_to_json
       end

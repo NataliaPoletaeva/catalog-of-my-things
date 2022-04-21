@@ -26,7 +26,9 @@ class MainEntryPoint
       when '6' then app.list_games
       when '8' then app.list_labels
       when '9' then app.list_authors
-      when 'E' then puts 'Saving data in JSON files....'
+      when 'E'
+        puts 'Saving data in JSON files....'
+        app.preserve_data_to_json
       end
     end
   end

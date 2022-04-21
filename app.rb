@@ -1,4 +1,5 @@
 require './console'
+require './preserve_data'
 require './label'
 require './book'
 require './author'
@@ -6,11 +7,13 @@ require './game'
 
 class App
   include Console
+  include PreserveData
+
   def initialize
-    @books = []
     @authors = []
-    @labels = []
     @games = []
+    @books = retrieve_data('books')
+    @labels = retrieve_data('labels')
   end
 
   def create_label
@@ -135,5 +138,8 @@ class App
     @authors.each_with_index do |author, indx|
       puts "#{indx + 1} ) [Author] Id: #{author.id}, Name: #{author.first_name} #{author.last_name}"
     end
+
+  def preserve_data_to_json
+    persist_data(@books, @labels)
   end
 end

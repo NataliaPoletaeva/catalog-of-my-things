@@ -138,6 +138,7 @@ class App
     @authors.each_with_index do |author, indx|
       puts "#{indx + 1} ) [Author] Id: #{author.id}, Name: #{author.first_name} #{author.last_name}"
     end
+  end
 
   def preserve_data_to_json
     persist_data(@books, @labels)

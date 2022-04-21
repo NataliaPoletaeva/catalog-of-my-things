@@ -9,7 +9,6 @@ class Item
     @label = nil
     @author = nil
     @genre = nil
-    @source = nil
   end
 
   def genre=(genre)
@@ -20,11 +19,6 @@ class Item
   def author=(author)
     @author = author
     author.items.push(self) unless author.items.include?(self)
-  end
-
-  def source=(source)
-    @source = source
-    source.items.push(self) unless source.items.include?(self)
   end
 
   def label=(label)

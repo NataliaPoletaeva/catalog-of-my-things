@@ -5,7 +5,6 @@ class Book < Item
   attr_accessor :publisher, :cover_state
 
   def initialize(publisher, publish_date, cover_state, id = -1)
-    p "publisher: #{publisher}, publish_date: #{publish_date}, cover_state:#{cover_state}  id: #{id}"
     super(publish_date, id)
     @publisher = publisher
     @cover_state = cover_state

@@ -2,7 +2,7 @@ class Item
   attr_reader :id, :archived, :label, :author, :genre, :source
   attr_accessor :publish_date
 
-  def initialize(publish_date, id)
+  def initialize(publish_date, id = -1)
     @id = if id == -1
             Random.rand(1..10_000)
           else

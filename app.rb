@@ -128,7 +128,7 @@ class App
 
   def list_labels
     puts 'No labels are available currently!' if @labels.empty?
-    @labels.each_with_index do |label, _indx|
+    @labels.each_with_index do |label, indx|
       puts " #{indx + 1} ) [Label] Id: #{label.id}, Title: #{label.title}, Color: #{label.color}"
     end
   end

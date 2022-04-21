@@ -20,7 +20,7 @@ class MainEntryPoint
       user_options
       user_input = gets.chomp
       case user_input
-      when '1' then app.create_book
+      when '1' then app.add_book
       when '3' then app.create_game
       when '4' then app.list_books
       when '6' then app.list_games

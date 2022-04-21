@@ -18,7 +18,8 @@ class Book < Item
         'publish_date' => @publish_date,
         'cover_state' => @cover_state,
         'id' => @id,
-        'label' => @label
+        'label' => @label,
+        'author' => @author
       }
     }.to_json(*args)
   end

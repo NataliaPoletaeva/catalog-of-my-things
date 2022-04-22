@@ -2,28 +2,31 @@ require './music'
 
 describe Musicalbum do
   context 'when instantiated' do
-    it 'with publisher, publish_date and cover_state should create a album' do
-      album = Musicalbum.new('Thriller', '2002-05-05', true)
+    it 'With all parameters should return music album' do
+      album = Musicalbum.new('2022-08-08', true)
       expect(album.class).to eq Musicalbum
-      expect(album.name).to eq 'Thriller'
       expect(album.on_spotify).to eq true
-      expect(album.publish_date).to eq '2002-05-05'
+      expect(album.publish_date).to eq '2022-08-08'
     end
   end
 
-  it 'with publisher, publish_date and cover_state should create a album' do
-    album = Musicalbum.new('Rights', '2002-05-08', false)
-    expect(album.class).to eq Musicalbum
-    expect(album.name).to eq 'Rights'
-    expect(album.on_spotify).to eq false
-    expect(album.publish_date).to eq '2002-05-08'
-  end
+  context 'when calling method move_to_archive' do
+    it 'with on spotify true and older than 10 years' do
+      music = Musicalbum.new(Time.local('2000-05-05'), true)
+      music.move_to_archive
+      expect(music.archived).to be_truthy
+    end
 
-  it 'with publisher, publish_date and cover_state should create a album' do
-    album = Musicalbum.new('The Show', '2022-08-08', true)
-    expect(album.class).to eq Musicalbum
-    expect(album.name).to eq 'The Show'
-    expect(album.on_spotify).to eq true
-    expect(album.publish_date).to eq '2022-08-08'
+    it 'with on spotify false and new music' do
+      music = Musicalbum.new(Time.local('2022-05-05'), false)
+      music.move_to_archive
+      expect(music.archived).to be_falsey
+    end
+
+    it 'with on spotify true and new music' do
+      music = Musicalbum.new(Time.local('2022-05-05'), true)
+      music.move_to_archive
+      expect(music.archived).to be_falsey
+    end
   end
 end

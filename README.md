@@ -1,7 +1,5 @@
 # Catalog of my things
 
-## School Library
-
 > This is the project that allows the user to add and store information about different items. The user may add books, music albums, games, and also a genre, a label and an author for each of those items. All the data stores locally in the .json files.
 
 ![](https://user-images.githubusercontent.com/91270103/164659759-dadc2093-5cd4-4c96-b318-20afca8f4004.png)
@@ -52,9 +50,7 @@ Give a :star:️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- Microverse
 
 ## :memo: License
 

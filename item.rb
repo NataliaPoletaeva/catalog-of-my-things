@@ -31,7 +31,7 @@ class Item
   end
 
   def can_be_archived?()
-    return true if (@publish_date.year - Time.now.year) > 10
+    return true if (Time.new.year - @publish_date.year) > 10
 
     false
   end

@@ -39,7 +39,7 @@ class Game < Item
   private
 
   def can_be_archived?
-    return true if Time.new.year - @last_played_date.year.to_i > 2
+    return true if super && (Time.new.year - @last_played_date.year > 2)
 
     false
   end

@@ -15,6 +15,20 @@ module Console
     { first_name: first_name, last_name: last_name }
   end
 
+  def musicalbum_input
+    print 'Enter a music album publish date:'
+    publish_date = gets.chomp
+    print 'Is it on spotify (y/n)'
+    on_spotify = gets.chomp
+    { on_spotify: on_spotify, publish_date: publish_date }
+  end
+
+  def genre_input
+    print 'Enter a genre:'
+    name = gets.chomp
+    { name: name }
+  end
+
   def book_input
     print 'Enter book publisher: '
     publisher = gets.chomp

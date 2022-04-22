@@ -14,16 +14,19 @@ class MainEntryPoint
     app = App.new
 
     user_input = nil
-    puts 'Hello Team'
+    puts 'Hello! What do you want to do today?'
 
     while user_input != 'E'
       user_options
       user_input = gets.chomp
       case user_input
       when '1' then app.create_book
+      when '2' then app.create_musicalbum
       when '3' then app.create_game
       when '4' then app.list_books
+      when '5' then app.list_musicalbums
       when '6' then app.list_games
+      when '7' then app.list_genres
       when '8' then app.list_labels
       when '9' then app.list_authors
       when 'E'

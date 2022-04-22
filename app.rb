@@ -4,6 +4,8 @@ require './label'
 require './book'
 require './author'
 require './game'
+require './music'
+require './genre'
 
 class App
   include Console
@@ -14,6 +16,8 @@ class App
     @games = retrieve_data('games')
     @books = retrieve_data('books')
     @labels = retrieve_data('labels')
+    @musicalbums = retrieve_data('musicalbums')
+    @genres = retrieve_data('genres')
   end
 
   def create_label
@@ -21,6 +25,13 @@ class App
     label = Label.new(user_input[:title], user_input[:color])
     @labels << label
     label
+  end
+
+  def create_genre
+    user_input = genre_input
+    genre = Genre.new(user_input[:name])
+    @genres << genre
+    genre
   end
 
   def create_author
@@ -77,6 +88,28 @@ class App
     author
   end
 
+  def add_genre_to_item
+    puts 'Add genre:
+    1 - select from existing genres
+    2 - add new genre'
+    genre_option = gets.chomp
+    genre = nil
+    case genre_option
+    when '1'
+      list_genres
+      if @genres.empty?
+        puts 'No genres available. Please, add genre!'
+        genre = create_genre
+      else
+        print 'Enter the number to select genre: '
+        genre_index = gets.chomp.to_i
+        genre = @genres[genre_index - 1]
+      end
+    when '2' then genre = create_genre
+    end
+    genre
+  end
+
   def create_book
     user_input = book_input
     label = add_label_to_item
@@ -90,6 +123,22 @@ class App
     author.add_item(book)
     @books << book
     book
+  end
+
+  def create_musicalbum
+    user_input = musicalbum_input
+    genre = add_genre_to_item
+    label = add_label_to_item
+    author = add_author_to_item
+    musicalbum = Musicalbum.new(
+      user_input[:publish_date],
+      user_input[:on_spotify]
+    )
+    genre.add_item(musicalbum)
+    label.add_item(musicalbum)
+    author.add_item(musicalbum)
+    @musicalbums.push(musicalbum)
+    musicalbum
   end
 
   def create_game
@@ -126,6 +175,17 @@ class App
     end
   end
 
+  def list_musicalbums
+    puts 'No music albums available!' if @musicalbums.empty?
+    @musicalbums.each_with_index do |musicalbum, indx|
+      puts "#{indx + 1} ) [Musicalbum] Id: #{musicalbum.id}, On Spotify: #{musicalbum.on_spotify},
+      publish date: #{musicalbum.publish_date}
+      Label: Title: #{musicalbum.label.title}, Color: #{musicalbum.label.color}
+      Genre: Name: #{musicalbum.genre.name}
+      Author: #{musicalbum.author.first_name} #{musicalbum.author.last_name}"
+    end
+  end
+
   def list_labels
     puts 'No labels are available currently!' if @labels.empty?
     @labels.each_with_index do |label, indx|
@@ -137,6 +197,13 @@ class App
     puts 'No authors are available currently!' if @authors.empty?
     @authors.each_with_index do |author, indx|
       puts "#{indx + 1} ) [Author] Id: #{author.id}, Name: #{author.first_name} #{author.last_name}"
+    end
+  end
+
+  def list_genres
+    puts 'No genres are available currently!' if @genres.empty?
+    @genres.each_with_index do |genre, indx|
+      puts "#{indx + 1} ) [Genre] Id: #{genre.id}, Name: #{genre.name} "
     end
   end
 

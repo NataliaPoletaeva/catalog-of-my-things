@@ -1,12 +1,20 @@
 require 'json'
 
 module PreserveData
-  def persist_data(books, games, labels, authors)
+  def persist_data(received_parameters)
+    books = received_parameters[0]
+    games = received_parameters[1]
+    labels = received_parameters[2]
+    authors = received_parameters[3]
+    genres = received_parameters[4]
+    musicalbums = received_parameters[5]
     Dir.mkdir('./data') unless Dir.exist?('./data')
     save_data(books, './data/books') unless books.empty?
     save_data(games, './data/games') unless games.empty?
     save_data(labels, './data/labels') unless labels.empty?
     save_data(authors, './data/authors') unless authors.empty?
+    save_data(genres, './data/genres') unless genres.empty?
+    save_data(musicalbums, './data/musicalbums') unless musicalbums.empty?
   end
 
   def retrieve_data(path)

@@ -168,7 +168,7 @@ class App
   end
 
   def preserve_data_to_json
-    persist_data(@books, @games, @labels, @authors)
+    persist_data([@books, @games, @labels, @authors, @genres, @musicalbums])
   end
 
   def options(user_input)

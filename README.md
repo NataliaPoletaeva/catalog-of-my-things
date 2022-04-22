@@ -9,12 +9,12 @@
 ## Getting started
 
  - Install [Ruby](https://www.ruby-lang.org/en/) on your machine by following this [guiding lesson](https://github.com/microverseinc/curriculum-ruby/blob/main/simple-ruby/articles/ruby_installation_instructions.md#macOS)
- - Clone this project using this [link](https://github.com/NataliaPoletaeva/catalog-of-my-things.git) on your local machine using the command line or open the repository in GitHub Desktop application
- - Navigate to file location using your command line terminal and run 'ruby main.rb'
+ - Clone this project: 'git clone https://github.com/NataliaPoletaeva/catalog-of-my-things.git' on your local machine using the command line or open the repository in GitHub Desktop application
+ - Navigate to file location using your command line terminal: 'cd catalog-of-my-things', and run 'ruby main.rb'
 
 ## Tests
 
-- Run 'rspec /name of the file/' for tests to run and see if they pass just right!
+- Run 'rspec spec' for tests to run and see if they pass just right!
  
 ## Built with
 
@@ -34,7 +34,7 @@
 - GitHub: [@mrparkersson](https://github.com/mrparkersson)
 - LinkedIn: [Prince Parker Amo](https://www.linkedin.com/in/amopp)
 
-👤 **Ola Ishola**
+👤 **Tekle Gebreyohannes**
 
 - GitHub: [@gtekle](https://github.com/gtekle)
 - Twitter: [@teklegyohannes](https://twitter.com/teklegyohannes)

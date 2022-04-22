@@ -1,5 +1,6 @@
 require './console'
 require './preserve_data'
+require './command_options'
 require './label'
 require './book'
 require './author'
@@ -10,6 +11,7 @@ require './genre'
 class App
   include Console
   include PreserveData
+  include CommandOptions
 
   def initialize
     @authors = retrieve_data('authors')
@@ -45,9 +47,7 @@ class App
   end
 
   def add_label_to_item
-    puts 'Add label:
-    1 - select from existing labels
-    2 - create new label'
+    puts "Add label: \n1 - select from existing labels \n2 - create new label"
     label_source = gets.chomp
     label = nil
     case label_source
@@ -67,9 +67,7 @@ class App
   end
 
   def add_author_to_item
-    puts 'Add author:
-    1 - select from existing authors
-    2 - add new author'
+    puts "Add author: \n1 - select from existing authors \n2 - add new author"
     author_source = gets.chomp
     author = nil
     case author_source
@@ -89,9 +87,7 @@ class App
   end
 
   def add_genre_to_item
-    puts 'Add genre:
-    1 - select from existing genres
-    2 - add new genre'
+    puts "Add genre: \n1 - select from existing genres \n2 - add new genre"
     genre_option = gets.chomp
     genre = nil
     case genre_option
@@ -111,45 +107,36 @@ class App
   end
 
   def create_book
-    user_input = book_input
+    input = book_input
     label = add_label_to_item
     author = add_author_to_item
-    book = Book.new(
-      user_input[:publisher],
-      user_input[:publish_date],
-      user_input[:cover_state]
-    )
+    genre = add_genre_to_item
+    book = Book.new(input[:publisher], input[:publish_date], input[:cover_state])
     label.add_item(book)
     author.add_item(book)
+    genre.add_item(book)
     @books << book
     book
   end
 
   def create_musicalbum
-    user_input = musicalbum_input
+    input = musicalbum_input
     genre = add_genre_to_item
     label = add_label_to_item
     author = add_author_to_item
-    musicalbum = Musicalbum.new(
-      user_input[:publish_date],
-      user_input[:on_spotify]
-    )
+    musicalbum = Musicalbum.new(input[:publish_date], input[:on_spotify])
     genre.add_item(musicalbum)
     label.add_item(musicalbum)
     author.add_item(musicalbum)
-    @musicalbums.push(musicalbum)
+    @musicalbums << musicalbum
     musicalbum
   end
 
   def create_game
-    user_input = game_input
+    input = game_input
     label = add_label_to_item
     author = add_author_to_item
-    game = Game.new(
-      user_input[:multiplayer],
-      user_input[:last_played_date],
-      user_input[:publish_date]
-    )
+    game = Game.new(input[:multiplayer], input[:last_played_date], input[:publish_date])
     label.add_item(game)
     author.add_item(game)
     @games << game
@@ -157,57 +144,46 @@ class App
   end
 
   def list_books
-    puts 'No books are available currently!' if @books.empty?
-    @books.each_with_index do |book, indx|
-      puts "#{indx + 1} ) [Book] Id: #{book.id}, publisher: #{book.publisher}, cover-state: #{book.cover_state}
-            Label: Title: #{book.label.title}, Color: #{book.label.color}
-            Author: #{book.author.first_name} #{book.author.last_name}"
-    end
+    display_books(@books)
   end
 
   def list_games
-    puts 'No games are available currently!' if @games.empty?
-    @games.each_with_index do |game, indx|
-      puts "#{indx + 1} ) [Game] Id: #{game.id}, multiplayer: #{game.multiplayer},
-      last time played: #{game.last_played_date}, publish date: #{game.publish_date}
-      Label: Title: #{game.label.title}, Color: #{game.label.color}
-      Author: #{game.author.first_name} #{game.author.last_name}"
-    end
+    display_games(@games)
   end
 
   def list_musicalbums
-    puts 'No music albums available!' if @musicalbums.empty?
-    @musicalbums.each_with_index do |musicalbum, indx|
-      puts "#{indx + 1} ) [Musicalbum] Id: #{musicalbum.id}, On Spotify: #{musicalbum.on_spotify},
-      publish date: #{musicalbum.publish_date}
-      Label: Title: #{musicalbum.label.title}, Color: #{musicalbum.label.color}
-      Genre: Name: #{musicalbum.genre.name}
-      Author: #{musicalbum.author.first_name} #{musicalbum.author.last_name}"
-    end
+    display_musicalbums(@musicalbums)
   end
 
   def list_labels
-    puts 'No labels are available currently!' if @labels.empty?
-    @labels.each_with_index do |label, indx|
-      puts " #{indx + 1} ) [Label] Id: #{label.id}, Title: #{label.title}, Color: #{label.color}"
-    end
+    display_labels(@labels)
   end
 
   def list_authors
-    puts 'No authors are available currently!' if @authors.empty?
-    @authors.each_with_index do |author, indx|
-      puts "#{indx + 1} ) [Author] Id: #{author.id}, Name: #{author.first_name} #{author.last_name}"
-    end
+    display_authors(@authors)
   end
 
   def list_genres
-    puts 'No genres are available currently!' if @genres.empty?
-    @genres.each_with_index do |genre, indx|
-      puts "#{indx + 1} ) [Genre] Id: #{genre.id}, Name: #{genre.name} "
-    end
+    display_genres(@genres)
   end
 
   def preserve_data_to_json
     persist_data(@books, @games, @labels, @authors)
+  end
+
+  def options(user_input)
+    if user_input.to_i >= 1 && user_input.to_i <= command_options.length then send(command_options[user_input.to_i - 1])
+    elsif user_input == 'E' then preserve_data_to_json
+    end
+  end
+
+  def run_app
+    user_input = nil
+    puts 'Hello! What do you want to do today?'
+    while user_input != 'E'
+      user_options
+      user_input = gets.chomp
+      options(user_input)
+    end
   end
 end

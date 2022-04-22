@@ -1,44 +1,7 @@
 require './app'
 
-class MainEntryPoint
-  def user_options
-    puts
-    puts ['1 - Add a book', '2 - Add a music album',
-          '3 - Add a game', '4 - List all books',
-          '5 - List all music albums', '6 - List all games',
-          '7 - List all genres (e.g "Comedy", "Thriller")', '8 - List all labels (e.g. "Gift", "New")',
-          '9 - List all authors (e.g. "Stephen King")', 'E - Exit']
-  end
-
-  def run_app
-    app = App.new
-
-    user_input = nil
-    puts 'Hello! What do you want to do today?'
-
-    while user_input != 'E'
-      user_options
-      user_input = gets.chomp
-      case user_input
-      when '1' then app.create_book
-      when '2' then app.create_musicalbum
-      when '3' then app.create_game
-      when '4' then app.list_books
-      when '5' then app.list_musicalbums
-      when '6' then app.list_games
-      when '7' then app.list_genres
-      when '8' then app.list_labels
-      when '9' then app.list_authors
-      when 'E'
-        puts 'Saving data in JSON files....'
-        app.preserve_data_to_json
-      end
-    end
-  end
-end
-
 def main
-  app = MainEntryPoint.new
+  app = App.new
   app.run_app
 end
 
